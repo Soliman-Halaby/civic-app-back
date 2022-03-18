@@ -1,0 +1,26 @@
+{
+  "type": "module",
+  "name": "civic-app-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soliman-Halaby/civic-app-back.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Soliman-Halaby/civic-app-back/issues"
+  },
+  "homepage": "https://github.com/Soliman-Halaby/civic-app-back#readme",
+  "dependencies": {
+    "apollo-server": "^3.6.4",
+    "firebase": "^9.6.9",
+    "graphql": "^16.3.0"
+  }
+}
