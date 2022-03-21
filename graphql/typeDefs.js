@@ -10,18 +10,30 @@ export const typeDefs = gql`
     createdAt: String
   }
 
+  type Mutation {
+    register(email: String): User
+  }
+
   type User {
     id: ID
     username: String
+    profilPicture: String
     number: Int
     # posts: [Post]
+    email: String
     createdAt: String
     # date: Date
   }
 
+  # input RegisterInput {
+  #   password: String
+  #   email: String
+  # }
+
   type Query {
     Users: [User]
     Posts: [Post]
+    Feed: [User]
   }
 `;
 
