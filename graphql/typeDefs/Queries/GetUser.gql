@@ -1,0 +1,14 @@
+type User {
+  id: ID
+  username: String
+  profilPicture: String
+  number: Int
+  # posts: [Post]
+  email: String
+  createdAt: String
+  # date: Date
+}
+
+type Query {
+  getUser: [User]
+}

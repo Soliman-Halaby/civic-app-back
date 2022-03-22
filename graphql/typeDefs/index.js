@@ -1,41 +1,10 @@
-import gql from "graphql-tag";
-import { GraphQLScalarType, Kind } from "graphql"; // ES6
+import { loadSchemaSync } from "@graphql-tools/load";
+import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 
-export const typeDefs = gql`
-  # scalar Date
-
-  type Post {
-    id: ID
-    content: String
-    createdAt: String
-  }
-
-  type Mutation {
-    register(email: String, password: String): User
-  }
-
-  type User {
-    id: ID
-    username: String
-    profilPicture: String
-    number: Int
-    # posts: [Post]
-    email: String
-    createdAt: String
-    # date: Date
-  }
-
-  # input RegisterInput {
-  #   password: String
-  #   email: String
-  # }
-
-  type Query {
-    Users: [User]
-    Posts: [Post]
-    UserInfo: [User]
-  }
-`;
+// Load all GraphQL type definitions from the `./graphql` directory
+export const typeDefs = loadSchemaSync("./**/*.gql", {
+  loaders: [new GraphQLFileLoader()],
+});
 
 // export const dateScalar = new GraphQLScalarType({
 //   name: "Date",

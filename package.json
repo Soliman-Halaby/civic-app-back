@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/Soliman-Halaby/civic-app-back#readme",
   "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.3.6",
+    "@graphql-tools/load": "^7.5.4",
     "apollo-server": "^3.6.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "firebase": "^9.6.9",
     "firebase-functions": "^3.19.0",
     "geofire-common": "^5.2.0",
