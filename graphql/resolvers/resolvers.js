@@ -2,20 +2,20 @@ import { users } from "./users.js";
 import { posts } from "./posts.js";
 // import { dateScalar } from "../typeDefs.js";
 // import { Mutation } from "./users.js";
-let links = [
+let userInfo = [
   {
-    id: "link-0",
+    id: "user-0",
     email: "solimanalhalabygmailcom",
   },
 ];
 
-console.log(links);
+console.log(userInfo);
 const resolvers = {
   // Date: dateScalar,
   Query: {
     Users: () => users,
     Posts: () => posts,
-    Feed: () => links,
+    Feed: () => userInfo,
   },
   // Mutation: {
   //   ...Mutation,
@@ -24,16 +24,16 @@ const resolvers = {
   Mutation: {
     // 2
     register: (parent, args) => {
-      let idCount = links.length;
+      let idCount = userInfo.length;
 
-      const link = {
-        id: `link-${idCount++}`,
+      const user = {
+        id: `user-${idCount++}`,
         email: args.email,
       };
       // console.log("cc");
-      links.push(link);
-      console.log(link);
-      return link;
+      userInfo.push(user);
+      console.log(user);
+      return user;
     },
   },
 };
