@@ -9,6 +9,8 @@ import { db } from "../../../firebase.js";
 const auth = getAuth();
 
 let token;
+let error;
+
 // console.log(auth);
 // Register user with email and password entered in frontend
 export const login = async (parent, args, context) => {
@@ -22,17 +24,19 @@ export const login = async (parent, args, context) => {
     })
 
     .catch((err) => {
+      const errorMessage = err.message;
+      const regExp = /\(([^)]+)\)/;
+      error = regExp.exec(errorMessage);
+      // Fetch the value between the parentheses
+      error = error[1];
+      // console.log(error);
       token = null;
-      console.log(err.message);
     });
-
-  // console.log("cc");
-  // userInfo.push(user);
-  console.log("my", token);
-  // return user;
 
   return {
     // Return token to use it to fetch
     token: token,
+    error: error,
   };
 };
+// login("bjjonsoir@gmsjjsail.com", "ccsssoucocuo");

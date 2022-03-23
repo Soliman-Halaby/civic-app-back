@@ -4,6 +4,7 @@ type User {
   profilPicture: String
   number: Int
   token: String
+  error: String
   # posts: [Post]
   email: String
   createdAt: String
