@@ -5,6 +5,7 @@ const userColRef = collection(db, "users");
 
 const auth = getAuth();
 
+let token;
 // Register user with email and password entered in frontend
 export const register = (parent, args, context) => {
   // Create user with Firestore ùmethod
@@ -15,7 +16,7 @@ export const register = (parent, args, context) => {
       addDoc(userColRef, {
         username: "Jojo",
         profilPicture: "Profileepicture",
-        acessToken: cred.user.accessToken,
+        accessToken: cred.user.accessToken,
         password: cred.user.reloadUserInfo.passwordHash,
         account_valide: cred.user.reloadUserInfo.emailVerified,
         email: cred.user.reloadUserInfo.email,
@@ -25,6 +26,7 @@ export const register = (parent, args, context) => {
         // long: lng,
         createdAt: serverTimestamp(),
       });
+      token = cred.user.accessToken;
       // console.log("user created");
     })
 
@@ -37,8 +39,9 @@ export const register = (parent, args, context) => {
   // console.log(user);
   // return user;
 
+  // console.log("oui", cred.user.accessToken);
   return {
     // Return token to use it to fetch
-    // token: cred.user.accessToken,
+    token: token,
   };
 };
