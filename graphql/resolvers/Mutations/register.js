@@ -1,9 +1,12 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, serverTimestamp } from "firebase/firestore";
+import { addDoc, serverTimestamp, collection } from "firebase/firestore";
+import { db } from "../../../firebase.js";
+const userColRef = collection(db, "users");
+
 const auth = getAuth();
 
 // Register user with email and password entered in frontend
-export const register = async (parent, args, context) => {
+export const register = (parent, args, context) => {
   // Create user with Firestore ùmethod
   createUserWithEmailAndPassword(auth, args.email, args.password)
     .then((cred) => {
@@ -36,6 +39,6 @@ export const register = async (parent, args, context) => {
 
   return {
     // Return token to use it to fetch
-    token: cred.user.accessToken,
+    // token: cred.user.accessToken,
   };
 };
