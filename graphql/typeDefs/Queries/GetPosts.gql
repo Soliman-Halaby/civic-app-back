@@ -4,8 +4,8 @@ type Post {
   content: String
   image: String
   tag: String
-  lat: String
-  lng: String
+  lat: Int
+  lng: Int
   city: String
   postalCode: Int
   adress: String
