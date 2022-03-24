@@ -25,6 +25,7 @@ export const createPost = async (parent, args, context) => {
     title: args.title,
     content: args.content,
     // image: args.image,
+    image: "https://placekitten.com/300/300",
     tag: args.tag,
     lat: args.lat,
     lng: args.lng,
