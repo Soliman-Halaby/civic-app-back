@@ -28,6 +28,7 @@ export const createPost = async (parent, args, context) => {
     image: "https://placekitten.com/300/300",
     tag: args.tag,
     lat: args.lat,
+    uid: args.uid,
     lng: args.lng,
     createdAt: serverTimestamp(),
     // username: args.username,
