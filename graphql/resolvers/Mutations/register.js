@@ -1,22 +1,29 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, serverTimestamp, collection } from "firebase/firestore";
 import { db } from "../../../firebase.js";
+import { getUser } from "../Queries/getUser.js";
 const userColRef = collection(db, "users");
 
 const auth = getAuth();
 
-let token;
+let uid = "";
+let token = "";
 let error;
+let email = "";
+let username = " ";
+// console.log("acces");
 // Register user with email and password entered in frontend
-export const register = (parent, args, context) => {
+export const register = async (parent, args, context) => {
   // Create user with Firestore ùmethod
   createUserWithEmailAndPassword(auth, args.email, args.password)
     .then((cred) => {
       // console.log(cred.user.reloadUserInfo.email);
-      console.log("user created:", cred.user);
+      // console.log(args.username);
+      // console.log("user created:", cred.user);
       addDoc(userColRef, {
-        username: "Jojo",
-        profilPicture: "Profileepicture",
+        username: args.username,
+        userId: cred.user.uid,
+        profilPicture: "https://placekitten.com/300/200",
         accessToken: cred.user.accessToken,
         password: cred.user.reloadUserInfo.passwordHash,
         account_valide: cred.user.reloadUserInfo.emailVerified,
@@ -27,8 +34,17 @@ export const register = (parent, args, context) => {
         // long: lng,
         createdAt: serverTimestamp(),
       });
+      // console.log("cred user:", cred.user);
       token = cred.user.accessToken;
+      console.log("token", cred.user.accessToken);
+      uid = cred.user.uid;
+      console.log("uid", cred.user.uid);
+      email = cred.user.email;
+      console.log("email", email);
+      username = args.username;
+      console.log("username", username);
       error = null;
+
       // console.log("user created");
     })
 
@@ -39,6 +55,7 @@ export const register = (parent, args, context) => {
       //Fetch the value between the parentheses
       error = error[1];
       console.log(error);
+      uid = null;
       token = null;
       // console.log(err.message);
     });
@@ -47,5 +64,8 @@ export const register = (parent, args, context) => {
     // Return token to use it to fetch
     token: token,
     error: error,
+    uid: uid,
+    email: email,
+    username: username,
   };
 };

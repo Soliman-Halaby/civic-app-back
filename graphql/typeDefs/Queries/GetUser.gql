@@ -1,5 +1,6 @@
 type User {
   id: ID
+  uid: String
   username: String
   profilPicture: String
   number: Int
@@ -13,4 +14,5 @@ type User {
 
 type Query {
   getUser: [User]
+  getUserId: [User]
 }

@@ -58,8 +58,8 @@ export const createPost = (parent, args, context) => {
 
   return {
     // Return token to use it to fetch
-    token: token,
-    error: error,
-    uid: uid,
+    // token: token,
+    // error: error,
+    // uid: uid,
   };
 };
