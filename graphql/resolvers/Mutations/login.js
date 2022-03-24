@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../firebase.js";
 import { getUser } from "../Queries/getUser.js";
-import { getUserId } from "../Queries/getUserId.js";
+// import { getUserId } from "../Queries/getUserId.js";
 // import { db } from "../../../firebase.js";
 // collection ref
 const colRef = collection(db, "users");

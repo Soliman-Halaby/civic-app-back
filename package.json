@@ -27,7 +27,6 @@
     "firebase": "^9.6.9",
     "firebase-functions": "^3.19.0",
     "geofire-common": "^5.2.0",
-    "graphql": "^16.3.0",
-    "nodemon": "^2.0.15"
+    "graphql": "^16.3.0"
   }
 }
