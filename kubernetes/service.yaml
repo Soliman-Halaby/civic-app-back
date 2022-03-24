@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-civic-app-service
+spec:
+  selector:
+    app: node-civic-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4000
