@@ -7,6 +7,10 @@ import { addDoc, serverTimestamp, collection } from "firebase/firestore";
 import { db } from "../../../firebase.js";
 
 const auth = getAuth();
+
+let token;
+let error;
+
 // console.log(auth);
 // Register user with email and password entered in frontend
 export const login = async (parent, args, context) => {
@@ -16,19 +20,23 @@ export const login = async (parent, args, context) => {
       // console.log(cred.user.reloadUserInfo.email);
       console.log("user logged:", cred.user);
       // console.log("user created");
+      token = cred.user.accessToken;
     })
 
     .catch((err) => {
-      console.log(err.message);
+      const errorMessage = err.message;
+      const regExp = /\(([^)]+)\)/;
+      error = regExp.exec(errorMessage);
+      // Fetch the value between the parentheses
+      error = error[1];
+      // console.log(error);
+      token = null;
     });
 
-  // console.log("cc");
-  // userInfo.push(user);
-  // console.log(user);
-  // return user;
-
-  // return {
-  //   // Return token to use it to fetch
-  //   token: cred.user.accessToken,
-  // };
+  return {
+    // Return token to use it to fetch
+    token: token,
+    error: error,
+  };
 };
+// login("bjjonsoir@gmsjjsail.com", "ccsssoucocuo");

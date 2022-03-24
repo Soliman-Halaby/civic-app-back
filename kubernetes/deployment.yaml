@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-civic-app-deployment
+  labels:
+    app: node-civic-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-civic-app
+  template:
+    metadata:
+      labels:
+        app: node-civic-app
+    spec:
+      containers:
+      - name: node-civic-app
+        image: kaskrinn/node-civic-app:latest
+        env:
+          - name: CIVIC_FIREBASE_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: civic-app
+                key: civic_firebase_api_key
+          - name: CIVIC_FIREBASE_AUTH_DOMAIN
+            value: civic-app-database.firebaseapp.com
+          - name: CIVIC_FIREBASE_PROJECT_ID
+            value: civic-app-database
+          - name: CIVIC_FIREBASE_STORAGE_BUCKET
+            value: civic-app-database.appspot.com
+          - name: CIVIC_FIREBASE_MESSAGING_SENDER_ID
+            value: "575655388303"
+          - name: CIVIC_FIREBASE_APP_ID
+            value: 1:575655388303:web:6574b6be0680bbb2387cfa
+          - name: CIVIC_FIREBASE_MEASUREMENT_ID
+            value: G-X57T6JNMYY
+        ports:
+        - containerPort: 4000
+        

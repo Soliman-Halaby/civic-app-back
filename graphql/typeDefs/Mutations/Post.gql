@@ -1,0 +1,10 @@
+type Mutation {
+  createPost(
+    title: String
+    content: String
+    image: String
+    tag: String
+    lat: String
+    lng: String
+  ): Post
+}
