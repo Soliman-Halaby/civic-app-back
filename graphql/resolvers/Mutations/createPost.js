@@ -5,19 +5,22 @@ const postsColRef = collection(db, "posts");
 
 const auth = getAuth();
 
-let uid = "";
-let token = "";
+// let uid = "";
+// let token = "";
+// let error;
+let tag = "";
 let error;
 // console.log("acces");
 // Register user with email and password entered in frontend
-export const createPost = (parent, args, context) => {
+export const createPost = async (parent, args, context) => {
   // Create user with Firestore ùmethod
   // createUserWithEmailAndPassword(auth, args.email, args.password)
   //   .then((cred) => {
   //     // console.log(cred.user.reloadUserInfo.email);
   //     // console.log(args.username);
   //     // console.log("user created:", cred.user);
-  console.log("post created", args);
+  // console.log("post created", args);
+  // console.log(args);
   addDoc(postsColRef, {
     title: args.title,
     content: args.content,
@@ -37,7 +40,19 @@ export const createPost = (parent, args, context) => {
     // geohash: hash,
     // lat: lat,
     // long: lng,
-  });
+  })
+    .then((cred) => {
+      console.log("icc", cred.firestore._queue);
+      tag = args.tag;
+    })
+    .catch((err) => {
+      const errorMessage = err.message;
+      const regExp = /\(([^)]+)\)/;
+      error = regExp.exec(errorMessage);
+      // Fetch the value between the parentheses
+      error = error[1];
+      tag = "error";
+    });
   // token = cred.user.accessToken;
   // uid = cred.user.uid;
   // error = null;
@@ -55,11 +70,11 @@ export const createPost = (parent, args, context) => {
   //   token = null;
   //   // console.log(err.message);
   // });
+  console.log("rererere", error);
 
   return {
     // Return token to use it to fetch
-    token: token,
     error: error,
-    uid: uid,
+    tag: tag,
   };
 };
