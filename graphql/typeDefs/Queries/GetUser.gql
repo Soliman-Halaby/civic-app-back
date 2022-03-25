@@ -1,9 +1,11 @@
 type User {
   id: ID
+  uid: String
   username: String
   profilPicture: String
   number: Int
   token: String
+  image: String
   error: String
   # posts: [Post]
   email: String
@@ -12,5 +14,7 @@ type User {
 }
 
 type Query {
-  getUser: [User]
+  getUser(uid: ID): [User]
+  getUserById: [User]
+  getUserId: [User]
 }

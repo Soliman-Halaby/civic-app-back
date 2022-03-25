@@ -1,5 +1,6 @@
 export * from "./getUser.js";
+// export * from "./getUsers.js";
 export * from "./getPosts.js";
-export * from "./getPostsApi.js";
-
-// console.log(getPosts);
+export * from "./getPosts.js";
+// export * from "./getUserPosts.js";
+// export * from "./getUserById.js";
