@@ -7,11 +7,11 @@ type Post {
   lat: String
   lng: String
   city: String
+  uid: String
   postalCode: Int
   adress: String
   createdAt: String!
   likes: [Like]
-  uid: String
   comments: [Comment]
   reports: [Report]
   accomplished: [Status]
