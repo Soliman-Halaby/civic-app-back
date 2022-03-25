@@ -53,6 +53,7 @@ export const getUserData = async (parent, args, context) => {
     const singleDocRef = doc(db, "users", docu.id);
 
     const unsubDoc = onSnapshot(singleDocRef, (user) => {
+      result = [];
       // console.log(user.data(), user.id, "doc data");
       // console.log(user.data());
       result.push({ ...user.data(), id: user.id });
