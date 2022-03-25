@@ -6,10 +6,7 @@ type Post {
   tag: String
   lat: String
   lng: String
-  city: String
   uid: String
-  postalCode: Int
-  adress: String
   createdAt: String!
   likes: [Like]
   comments: [Comment]

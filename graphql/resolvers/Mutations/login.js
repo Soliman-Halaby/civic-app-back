@@ -1,21 +1,8 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import {
-  addDoc,
-  serverTimestamp,
-  collection,
-  query,
-  where,
-  getDocs,
-} from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { collection } from "firebase/firestore";
 import { db } from "../../../firebase.js";
 import { getUser } from "../Queries/getUser.js";
-// import { getUserId } from "../Queries/getUserId.js";
-// import { db } from "../../../firebase.js";
-// collection ref
+
 const colRef = collection(db, "users");
 
 const auth = getAuth();
@@ -32,10 +19,6 @@ export const login = async (parent, args, context) => {
   // Create user with Firestore ùmethod
   signInWithEmailAndPassword(auth, args.email, args.password)
     .then((cred) => {
-      // console.log(cred.user.reloadUserInfo.email);
-      // console.log("user logged:", cred.user);
-      // console.log("user created");
-      // console.log(cred.user);
       uid = cred.user.uid;
       token = cred.user.accessToken;
       email = cred.user.email;
@@ -60,11 +43,6 @@ export const login = async (parent, args, context) => {
 
   username = userData.username;
   number = userData.number;
-  // console.log(userInfo["email"]);
-  // console.log("cc");
-  // const userId = getUserId(email);
-  // console.log("userid", userId);
-  // console.log("email", email);
 
   return {
     // Return token to use it to fetch

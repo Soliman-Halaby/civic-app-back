@@ -1,7 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, serverTimestamp, collection } from "firebase/firestore";
 import { db } from "../../../firebase.js";
-import { getUser } from "../Queries/getUser.js";
 const userColRef = collection(db, "users");
 
 const auth = getAuth();
@@ -17,9 +16,6 @@ export const register = async (parent, args, context) => {
   // Create user with Firestore ùmethod
   createUserWithEmailAndPassword(auth, args.email, args.password)
     .then((cred) => {
-      // console.log(cred.user.reloadUserInfo.email);
-      // console.log(args.username);
-      // console.log("user created:", cred.user);
       addDoc(userColRef, {
         username: args.username,
         userId: cred.user.uid,
@@ -57,7 +53,6 @@ export const register = async (parent, args, context) => {
       console.log(error);
       uid = null;
       token = null;
-      // console.log(err.message);
     });
 
   return {
