@@ -14,5 +14,4 @@ type User {
 
 type Query {
   getUser: [User]
-  getUserId: [User]
 }
