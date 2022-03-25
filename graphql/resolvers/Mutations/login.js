@@ -39,10 +39,10 @@ export const login = async (parent, args, context) => {
   const userInfo = await getUser(uid);
   const userData = userInfo[0];
 
-  console.log("userdata", userData.username, userData.email, userData.number);
+  // console.log("userdata", userData.username, userData.email, userData.number);
 
-  username = userData.username;
-  number = userData.number;
+  // username = userData.username;
+  // number = userData.number;
 
   return {
     // Return token to use it to fetch
@@ -50,7 +50,7 @@ export const login = async (parent, args, context) => {
     error: error,
     uid: uid,
     email: email,
-    username: username,
+    // username: username,
     number: number,
   };
 };

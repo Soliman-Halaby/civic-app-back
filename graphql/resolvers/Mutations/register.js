@@ -32,13 +32,13 @@ export const register = async (parent, args, context) => {
       });
       // console.log("cred user:", cred.user);
       token = cred.user.accessToken;
-      console.log("token", cred.user.accessToken);
+      // console.log("token", cred.user.accessToken);
       uid = cred.user.uid;
-      console.log("uid", cred.user.uid);
+      // console.log("uid", cred.user.uid);
       email = cred.user.email;
-      console.log("email", email);
+      // console.log("email", email);
       username = args.username;
-      console.log("username", username);
+      // console.log("username", username);
       error = null;
 
       // console.log("user created");
