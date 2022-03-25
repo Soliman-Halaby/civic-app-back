@@ -18,6 +18,7 @@ export const getPosts = async () => {
   const unsubCol = onSnapshot(postColRef, (snapshot) => {
     result = [];
     snapshot.docs.forEach((doc) => {
+      console.log(doc.data());
       result.push({ ...doc.data(), id: doc.id });
     });
     // console.log(result);
